@@ -22,7 +22,7 @@ class MovieFactory extends Factory
         return [
             'title' => FakerMovie::movie(),
             'director' => $faker->name,
-            'cast' => '',
+            'cast' => $faker->name,
             'category' => FakerMovie::movieGenre(),
             'releaseDate' => $faker->date,
         ];
