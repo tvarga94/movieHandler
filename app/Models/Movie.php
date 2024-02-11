@@ -9,18 +9,18 @@ class Movie extends Model
 {
     use HasFactory;
 
-    const RELEASE_DATE = 'releaseDate';
+    public const RELEASE_DATE = 'releaseDate';
 
-    const TITLE = 'title';
-    const DIRECTOR = 'director';
-    const CATEGORY = 'category';
+    public const TITLE = 'title';
+    public const DIRECTOR = 'director';
+    public const CATEGORY = 'category';
 
-    CONST SEARCH = 'search';
+    public const SEARCH = 'search';
 
-    const SORT = 'sort';
+    public const SORT = 'sort';
 
-    const ASC = 'asc';
-    const DESC = 'desc';
+    public const ASC = 'asc';
+    public const DESC = 'desc';
 
     protected $table = 'movies';
 

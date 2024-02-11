@@ -115,7 +115,6 @@ class MovieController extends Controller
         $movie = $this->movieRepository->findOrFail($movieId);
 
         return new MovieResource($movie);
-
     }
 
     /**
