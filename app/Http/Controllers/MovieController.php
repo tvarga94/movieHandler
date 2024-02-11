@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MovieRequest;
 use App\Http\Resources\MovieResource;
 use App\Repositories\MovieRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -262,5 +264,33 @@ class MovieController extends Controller
         $this->movieRepository->delete($movieId);
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @OA\Get (
+     *     path="/api/search",
+     *     tags={"Movies"},
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="search",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="msg", type="string", example="search successfull")
+     *         )
+     *     )
+     * )
+     */
+    public function search(Request $request): Collection
+    {
+        if (null === $searchWord = $request->input('search')) {
+            return new Collection();
+        }
+
+        return $this->movieRepository->search($searchWord);
     }
 }

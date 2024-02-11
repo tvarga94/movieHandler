@@ -33,4 +33,12 @@ class MovieRepository implements CRUDInterface
     {
         $this->findOrFail($id)->delete();
     }
+
+    public function search(string $search): Collection
+    {
+        return Movie::query()->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('director', 'LIKE', "%{$search}%")
+            ->orWhere('category', 'LIKE', "%{$search}%")
+            ->get();
+    }
 }

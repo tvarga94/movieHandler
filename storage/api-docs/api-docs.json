@@ -328,6 +328,42 @@
                     }
                 }
             }
+        },
+        "/api/search": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "operationId": "e657a06ece313f60d622d5dadafd4cfb",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "delete movie success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
