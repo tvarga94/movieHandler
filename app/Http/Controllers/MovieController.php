@@ -24,6 +24,15 @@ class MovieController extends Controller
      * @OA\Get (
      *     path="/api/movies",
      *     tags={"Movies"},
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="sort",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *              enum={"asc", "desc"}
+     *          )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="success",
@@ -64,9 +73,14 @@ class MovieController extends Controller
      *     )
      * )
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $movies = $this->movieRepository->findAll();
+        $sortOrder = 'desc';
+        if ('asc' === $request->input('sort')) {
+            $sortOrder = 'asc';
+        }
+
+        $movies = $this->movieRepository->findAll($sortOrder);
 
         return MovieResource::collection($movies);
     }

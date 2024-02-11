@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class MovieRepository implements CRUDInterface
 {
-    public function findAll(): Collection
+    public function findAll(?string $sort): Collection
     {
-        return Movie::all();
+        return Movie::query()->orderBy('releaseDate', $sort)->get();
     }
 
     public function findOrFail(int $id): Model

@@ -12,6 +12,20 @@
                     "Movies"
                 ],
                 "operationId": "a7859dc5cd106bbeae5492e22df893ec",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "success",
@@ -354,7 +368,7 @@
                                     "properties": {
                                         "msg": {
                                             "type": "string",
-                                            "example": "delete movie success"
+                                            "example": "search successfull"
                                         }
                                     },
                                     "type": "object"

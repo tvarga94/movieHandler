@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 interface CRUDInterface
 {
-    public function findAll(): Collection;
+    public function findAll(?string $sort): Collection;
 
     public function findOrFail(int $id): Model;
 
