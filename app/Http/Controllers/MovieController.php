@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MovieRequest;
 use App\Http\Resources\MovieResource;
+use App\Models\Movie;
 use App\Repositories\MovieRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -75,9 +76,9 @@ class MovieController extends Controller
      */
     public function index(Request $request): AnonymousResourceCollection
     {
-        $sortOrder = 'desc';
-        if ('asc' === $request->input('sort')) {
-            $sortOrder = 'asc';
+        $sortOrder = Movie::DESC;
+        if (Movie::ASC === $request->input(Movie::SORT)) {
+            $sortOrder = Movie::ASC;
         }
 
         $movies = $this->movieRepository->findAll($sortOrder);
@@ -301,7 +302,7 @@ class MovieController extends Controller
      */
     public function search(Request $request): Collection
     {
-        if (null === $searchWord = $request->input('search')) {
+        if (null === $searchWord = $request->input(Movie::SEARCH)) {
             return new Collection();
         }
 
