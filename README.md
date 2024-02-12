@@ -7,3 +7,4 @@
 7. Run the `php artisan serve` to start the local server
 8. Visit the `/api/documentation` to access the dashboard
 9. The `composer.json` script section contains all the unable scripts
+10. Run the tests with `php artisan test`
